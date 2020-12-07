@@ -13,6 +13,10 @@ $container = new Container();
 $settings = require __DIR__ . '/../app/settings.php';
 $settings($container);
 
+// Connection
+$connection = require __DIR__ . '/../app/connection.php';
+$connection($container);
+
 // Logger
 $logger = require __DIR__ . '/../app/logger.php';
 $logger($container);

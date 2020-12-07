@@ -9,6 +9,8 @@ use Psr\Http\Message\ServerRequestInterface as RequestInterface;
 
 return function(App $app) {
 
+  // Normal route, doesn't use twig
+
   $app->get('/hello/{name}', function (RequestInterface $request, ResponseInterface $response, $args) {
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
@@ -19,6 +21,8 @@ return function(App $app) {
 
   $app->group('', function(RouteCollectorProxy $view) {
 
+    // All in this group will use the twig middleware
+    
     $view->get('/views/{name}', function($request, $response, $args) {
       $view = 'example.twig';
       $name = $args['name'];
@@ -26,7 +30,7 @@ return function(App $app) {
       return $this->get('view')->render($response, $view, compact('name'));
     });
 
-  })->add($container->get('viewMiddleware')); // apply on a group of routes
+  })->add($container->get('viewMiddleware'));
   
 };
 
