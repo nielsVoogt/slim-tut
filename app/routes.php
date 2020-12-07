@@ -19,12 +19,6 @@ return function(App $app) {
 
   $app->group('', function(RouteCollectorProxy $view) {
 
-    $view-> get('/example/{name}', function($request, $response, $args) {
-      $name = $args['name'];
-
-      return $this->get('view')->render($response, 'example.twig', compact('name'));
-    });
-
     $view->get('/views/{name}', function($request, $response, $args) {
       $view = 'example.twig';
       $name = $args['name'];
