@@ -10,11 +10,16 @@ use Psr\Http\Message\ServerRequestInterface as RequestInterface;
 return function(App $app) {
 
   // Normal route, doesn't use twig
+  // Returns JSON
 
   $app->get('/hello/{name}', function (RequestInterface $request, ResponseInterface $response, $args) {
     $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-    return $response;
+    
+    // $response->getBody()->write("Hello, $name");
+    // return $response;
+
+    $response->getBody()->write(json_encode(['success' => $name]));
+    return $response->withHeader('Content-Type', 'application/json');
   });
   
   $container = $app->getContainer();

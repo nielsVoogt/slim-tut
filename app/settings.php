@@ -22,7 +22,7 @@ return function(Container $container) {
         'settings' => ['cache' => false],
       ],
       'connection' => [
-        'host' => 'slim_db_1',
+        'host' => 'slim-tut_db_1',
         'dbname' => 'db',
         'dbuser' => 'user',
         'dbpass' => 'secret',
